@@ -5,6 +5,8 @@
   --text: #334155;
   --text-dark: #cbd5e1;
   --success: #10b981;
+  --primary: #3b82f6; 
+  --danger: #e11d48;
 }
 
 * { box-sizing: border-box; }
@@ -20,10 +22,11 @@ body {
 }
 
 body.dark {
+  --primary: #60a5fa; 
+  --danger: #fb7185;
   background: var(--background-dark);
   color: var(--text-dark);
 }
-
 /* --- SIDEBAR --- */
 .sidebar {
   width: 260px;
@@ -50,15 +53,15 @@ body.dark .sidebar {
 }
 
 nav a {
-  color: #c7d2fe;
+  color: #e0e7ff;
   text-decoration: none;
   padding: 10px 12px;
   border-radius: 8px;
   transition: all 0.3s ease;
   font-size: 14px;
   display: block;
+  font-weight: 700;
 }
-
 nav a:hover { background-color: #60a5fa; color: #fff; }
 
 nav a.completed {
@@ -225,4 +228,5 @@ button.done:hover { background-color: #2563eb; transform: translateY(-2px); }
   .sidebar { width: 100%; height: auto; position: relative; }
   .content { margin-left: 0; padding: 20px; }
   body { flex-direction: column; }
+
 }
