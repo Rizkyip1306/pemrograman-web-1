@@ -8,19 +8,19 @@ let meetingTracker = {};
 const materiDatabase = {
     1: {
         title: "Pengenalan Web",
-        fullText: `<h3>World Wide Web</h3><p>WWW adalah kumpulan web diseluruh dunia yang memberikan layanan informasi melalui halaman web .</p><h3>Client-Server</h3><p>Server menyimpan data, sementara Client (browser) meminta dokumen tersebut.</p>`,
+        fullText: `<h3>World Wide Web</h3><p>WWW adalah kumpulan web diseluruh dunia yang memberikan layanan informasi melalui halaman web.</p><h3>Client-Server</h3><p>Server menyimpan data, sementara Client (browser) meminta dokumen tersebut.</p>`,
         youtubeUrl: "https://www.youtube.com/watch?v=UB1O30fR-EE",
         pdfUrl: "assets/pdf/TPL0293_01_PENGENALAN WEB.pdf"
     },
     2: {
         title: "Basic Tag HTML",
-        fullText: `<h3>Struktur Dasar</h3><p>HTML menggunakan tag berpasangan &lt;..&gt; dan diakhiri &lt;/..&gt; .</p><h3>Format Dokumen</h3><p>Penggunaan Heading (h1-h6), Paragraf (p), dan tag dasar lainnya.</p>`,
+        fullText: `<h3>Struktur Dasar</h3><p>HTML menggunakan tag berpasangan &lt;..&gt; dan diakhiri &lt;/..&gt;.</p><h3>Format Dokumen</h3><p>Penggunaan Heading (h1-h6), Paragraf (p), dan tag dasar lainnya.</p>`,
         youtubeUrl: "https://www.youtube.com/watch?v=qz0aGYrrlhU",
         pdfUrl: "assets/pdf/TPL0293_02_BASIC TAG HTML.pdf"
     },
     3: {
         title: "Format Teks & Karakter Khusus",
-        fullText: `<h3>Formatting</h3><p>Penggunaan tag b, i, u, strong, em, small, big, serta subscript (sub) dan superscript (sup) .</p><h3>Karakter Khusus</h3><p>Penggunaan simbol khusus yang didefinisikan dalam modul.</p>`,
+        fullText: `<h3>Formatting</h3><p>Penggunaan tag b, i, u, strong, em, small, big, serta subscript (sub) dan superscript (sup).</p><h3>Karakter Khusus</h3><p>Penggunaan simbol khusus yang didefinisikan dalam modul.</p>`,
         youtubeUrl: "https://www.youtube.com/watch?v=pAnV-A9y_V0",
         pdfUrl: "assets/pdf/TPL0293_03_FORMAT TEKS DAN KARAKTER KHUSUS.pdf"
     },
@@ -227,3 +227,4 @@ function toggleTheme() { document.body.classList.toggle("dark"); }
 
 generateSidebar();
 loadMeeting(1);
+
