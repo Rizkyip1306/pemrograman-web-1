@@ -67,33 +67,48 @@ function loadMeeting(num) {
     const videoB = meetingTracker[num].videoOpened ? "show" : "";
 
     document.getElementById("meetingContent").innerHTML = `
-    <div class="card">
-      <div class="dropdown-item">
-        <div id="badge-text-${num}" class="item-badge ${textB}">✓</div>
-        <div class="dropdown-header" onclick="markAsOpened(${num}, 'text'); toggleDrop('materiDrop')">
-          <span>📖 Materi</span>
-        </div>
-        <div id="materiDrop" class="dropdown-body">
-          <div>${data.fullText}</div>
-          <div class="pdf-download-container">
-            <span>📄</span>
-            <a href="${data.pdfUrl}" target="_blank" class="btn-action-link">Buka PDF</a>
-          </div>
-        </div>
-      </div>
-      <div class="dropdown-item">
-        <div id="badge-video-${num}" class="item-badge ${videoB}">✓</div>
-        <div class="dropdown-header" onclick="toggleDrop('videoDrop')">
-          <span>🎬 Video Pembelajaran</span>
-        </div>
-        <div id="videoDrop" class="dropdown-body">
-          <div class="pdf-download-container" style="background: #fff1f2;">
-            <span>▶️</span>
-            <a href="${data.youtubeUrl}" target="_blank" class="btn-action-link" style="color:#e11d48; border-color:#e11d48;" onclick="markAsOpened(${num}, 'video')">Tonton Video</a>
-          </div>
+    // Cari bagian ini di dalam script.js fungsi loadMeeting
+meetingContent.innerHTML = `
+<div class="card">
+  <div class="dropdown-item">
+    <div id="badge-text-${num}" class="item-badge ${textBadgeClass}">✓</div>
+    <div class="dropdown-header" onclick="markAsOpened(${num}, 'text'); toggleDrop('materiDrop')">
+      <span>📖 Materi </span>
+    </div>
+    <div id="materiDrop" class="dropdown-body">
+      <div class="materi-full">${data.fullText}</div>
+      <div class="action-box-container" style="background: #eff6ff;">
+        <span style="font-size: 24px;">📄</span>
+        <div style="flex-grow: 1;">
+          <small class="action-label text-pdf">DOKUMEN MODUL</small>
+          <a href="${data.pdfUrl}" target="_blank" class="btn-action bg-pdf">Buka Materi PDF</a>
         </div>
       </div>
-    </div>`;
+    </div>
+  </div>
+
+  <div class="dropdown-item">
+    <div id="badge-video-${num}" class="item-badge ${videoBadgeClass}">✓</div>
+    <div class="dropdown-header" onclick="toggleDrop('videoDrop')">
+      <span>🎬 Video Pembelajaran</span>
+    </div>
+    <div id="videoDrop" class="dropdown-body">
+      <div class="action-box-container" style="background: #fff1f2;">
+        <span style="font-size: 24px;">▶️</span>
+        <div style="flex-grow: 1;">
+          <small class="action-label text-video">TUTORIAL VIDEO</small>
+          <a href="${data.youtubeUrl}" target="_blank" class="btn-action bg-video" onclick="markAsOpened(${num}, 'video')">Tonton Video Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-controls">
+    ${num > 1 ? `<button class="done btn-action bg-pdf" style="min-width:auto;" onclick="loadMeeting(${num - 1})">← Kembali</button>` : '<div></div>'}
+    ${num < 21 ? `<button class="done btn-action bg-pdf" style="min-width:auto;" onclick="loadMeeting(${num + 1})">Selanjutnya →</button>` : '<div></div>'}
+  </div>
+</div>
+`;
 }
 
 function markAsOpened(num, type) {
@@ -121,5 +136,6 @@ function toggleTheme() { document.body.classList.toggle("dark"); }
 generateSidebar();
 loadMeeting(1);
 updateFinalProgress();
+
 
 
