@@ -131,14 +131,54 @@ body.dark .dropdown-header { background: #334155; }
 }
 .item-badge.show { display: flex; }
 
-/* PDF & Video Links */
-.pdf-download-container { margin-top: 20px; padding: 15px; background: #eff6ff; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
-body.dark .pdf-download-container { background: #334155; }
-.btn-action-link { 
-    color: var(--primary); text-decoration: none; font-weight: 700; 
-    padding: 8px 15px; border: 1px solid var(--primary); border-radius: 6px; transition: 0.3s;
+/* Container Box (Disamakan untuk PDF dan Video) */
+.action-box-container {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid rgba(0,0,0,0.1); /* Border halus */
 }
-.btn-action-link:hover { background: var(--primary); color: #fff; }
+
+/* Label Tulisan Kecil di Atas Tombol */
+.action-label {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+/* Tombol Utama dengan Efek Tekan 3D */
+.btn-action {
+  display: inline-block;
+  color: white !important;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.1s ease;
+  text-align: center;
+  min-width: 140px;
+}
+
+/* Efek Tekan Saat Diklik */
+.btn-action:active {
+  transform: translateY(3px);
+}
+
+/* Warna Spesifik PDF (Biru) */
+.bg-pdf { background-color: #3b82f6; box-shadow: 0 4px 0 #1d4ed8; }
+.bg-pdf:active { box-shadow: 0 1px 0 #1d4ed8; }
+.text-pdf { color: #3b82f6; }
+
+/* Warna Spesifik Video (Merah) */
+.bg-video { background-color: #e11d48; box-shadow: 0 4px 0 #be123c; }
+.bg-video:active { box-shadow: 0 1px 0 #be123c; }
+.text-video { color: #e11d48; }
 
 /* --- THEME TOGGLE --- */
 .top-header-actions { display: flex; justify-content: flex-end; }
@@ -165,3 +205,4 @@ body.dark .toggle-circle { transform: translateX(22px); }
     padding: 20px;
   }
 }
+
