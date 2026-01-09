@@ -87,7 +87,7 @@ function loadMeeting(num) {
           <span>🎬 Video Pembelajaran</span>
         </div>
         <div id="videoDrop" class="dropdown-body">
-          <div class="pdf-download-container" style="background: #fff1f2;">
+          <div class="pdf-download-container">
             <span>▶️</span>
             <a href="${data.youtubeUrl}" target="_blank" class="btn-action-link" style="color:#e11d48; border-color:#e11d48;" onclick="markAsOpened(${num}, 'video')">Tonton Video</a>
           </div>
@@ -121,3 +121,4 @@ function toggleTheme() { document.body.classList.toggle("dark"); }
 generateSidebar();
 loadMeeting(1);
 updateFinalProgress();
+
