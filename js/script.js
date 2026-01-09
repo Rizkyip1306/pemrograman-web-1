@@ -3,8 +3,6 @@ const progressText = document.getElementById("progressText");
 const meetingContent = document.getElementById("meetingContent");
 const pageTitle = document.getElementById("pageTitle");
 
-let meetingTracker = {}; 
-
 const materiDatabase = {
     1: {
         title: "Pengenalan Web",
@@ -133,7 +131,9 @@ const materiDatabase = {
         pdfUrl: "#"
     }
 };
-
+// Memuat data dari localStorage saat aplikasi pertama kali dijalankan
+const savedTracker = localStorage.getItem('meetingTracker');
+let meetingTracker = savedTracker ? JSON.parse(savedTracker) : {}; 
 
 function generateSidebar() {
     const nav = document.getElementById("sidebarNav");
@@ -143,6 +143,12 @@ function generateSidebar() {
         a.href = "#";
         a.id = `nav-item-${i}`;
         a.innerText = `Pertemuan ${i}`;
+        
+        // Tambahkan class 'completed' jika data sudah ada di tracker
+        if (meetingTracker[i] && meetingTracker[i].textOpened && meetingTracker[i].videoOpened) {
+            a.classList.add('completed');
+        }
+        
         a.onclick = (e) => { e.preventDefault(); loadMeeting(i); };
         nav.appendChild(a);
     }
@@ -150,11 +156,11 @@ function generateSidebar() {
 
 function loadMeeting(num) {
     const data = materiDatabase[num] || { title: `Pertemuan ${num}`, fullText: "Materi Belum Tersedia", youtubeUrl: "#", pdfUrl: "#" };
+    
     if (!meetingTracker[num]) meetingTracker[num] = { textOpened: false, videoOpened: false };
     
     pageTitle.innerText = `Pertemuan ${num} : ${data.title}`;
 
-    const isAllDone = (meetingTracker[num].textOpened && meetingTracker[num].videoOpened);
     const textBadgeClass = (meetingTracker[num].textOpened) ? "show" : "";
     const videoBadgeClass = (meetingTracker[num].videoOpened) ? "show" : "";
 
@@ -169,7 +175,7 @@ function loadMeeting(num) {
           <div class="materi-full">${data.fullText}</div>
           <div class="pdf-download-container">
             <span class="pdf-icon">📄</span>
-            <a href="${data.pdfUrl}" target="_blank" class="pdf-link"> Materi PDF </a>
+            <a href="${data.pdfUrl}" target="_blank" class="pdf-link"> Buka PDF </a>
           </div>
         </div>
       </div>
@@ -208,11 +214,14 @@ function markAsOpened(num, type) {
         if(badge) badge.classList.add('show');
     }
 
+    // Simpan ke localStorage setiap ada perubahan
+    localStorage.setItem('meetingTracker', JSON.stringify(meetingTracker));
+
     if (meetingTracker[num].textOpened && meetingTracker[num].videoOpened) {
         const navItem = document.getElementById(`nav-item-${num}`);
         if (navItem) navItem.classList.add('completed');
-        updateFinalProgress();
     }
+    updateFinalProgress();
 }
 
 function updateFinalProgress() {
@@ -223,7 +232,16 @@ function updateFinalProgress() {
 }
 
 function toggleDrop(id) { document.getElementById(id).classList.toggle("active"); }
-function toggleTheme() { document.body.classList.toggle("dark"); }
+function toggleTheme() { 
+    document.body.classList.toggle("dark");
+    // Opsional: Simpan preferensi tema
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
 
+// Inisialisasi tampilan awal
 generateSidebar();
+updateFinalProgress(); // Memastikan progress bar terisi sesuai data tersimpan
 loadMeeting(1);
+
+// Opsional: Memuat tema yang tersimpan
+if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
