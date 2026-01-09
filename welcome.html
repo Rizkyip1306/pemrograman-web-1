@@ -3,12 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <title>Pemrograman Web 1</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<aside class="sidebar">
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <button class="hamburger-btn" onclick="toggleSidebar()">
+    <span id="menuIcon">☰</span>
+  </button>
+
   <div class="sidebar-header">
     <div class="progress-box">
       <small>Progress Pembelajaran</small>
@@ -25,8 +31,7 @@
     <h2>List Of Learning Contents</h2>
   </div>
 
-  <nav id="sidebarNav">
-    </nav>
+  <nav id="sidebarNav"></nav>
 </aside>
 
 <main class="content">
@@ -41,8 +46,7 @@
     <p id="pageSubtitle">Media Materi Perkuliahan</p>
   </header>
 
-  <div id="meetingContent">
-    </div>
+  <div id="meetingContent"></div>
 </main>
 
 <script src="js/script.js"></script>
